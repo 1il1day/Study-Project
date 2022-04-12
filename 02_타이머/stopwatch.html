@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>타이머</title>
+</head>
+<body>
+    <h1>00:00:00</h1>
+    <button onclick="onStart()">시작</button>
+    <button onclick="onStop()">멈춤</button>
+    <button onclick="onClear()">초기화</button>
+
+    <script>
+        let $h1 = document.querySelector("h1");
+        let moveMin=0;
+        let moveSec=0;
+        let moveMsc=0;
+
+
+        function onStart(){
+            setInterval(function msc(){
+                if(moveMsc>=99){
+                    moveMsc=0;
+                }else{
+                    moveMsc++;
+                }
+                $h1.innerText = `${moveMin<10? `0${moveMin}`:moveMin}:${moveSec<10? `0${moveSec}`:moveSec}:${moveMsc<10? `0${moveMsc}`:moveMsc}`;
+            },10);
+
+            setInterval(function sec(){
+                if(moveSec>=59){
+                    moveSec=0;
+                }else{
+                    moveSec++;
+                }
+            },1000);
+
+            setInterval(function min(){
+                if(moveMin>=59){
+                    moveMin=0;
+                }else{
+                    moveMin++;
+                }
+            },60000);
+
+            
+        }
+
+    </script>
+</body>
+</html>
