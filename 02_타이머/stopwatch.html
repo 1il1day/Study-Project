@@ -6,12 +6,16 @@
 </head>
 <body>
     <h1>00:00:00</h1>
-    <button onclick="onStart()">시작</button>
-    <button onclick="onStop()">멈춤</button>
-    <button onclick="onClear()">초기화</button>
+    <button>시작</button>
+    <button>멈춤</button>
+    <button>초기화</button>
 
     <script>
         let $h1 = document.querySelector("h1");
+        let startBtn = document.querySelector("button:nth-of-type(1)")
+        let stopBtn = document.querySelector("button:nth-of-type(2)")
+        let clearBtn = document.querySelector("button:nth-of-type(3)")
+
         let moveMin=0;
         let moveSec=0;
         let moveMsc=0;
@@ -42,9 +46,21 @@
                     moveMin++;
                 }
             },60000);
-
-            
         }
+        
+        
+        function onStop(){
+            clearInterval(onStart);
+        }
+
+        function onClear(event){
+            event.preventDefault();
+            location.reload();
+        }
+
+        startBtn.addEventListener('click', onStart);
+        stopBtn.addEventListener('click', onStop);
+        clearBtn.addEventListener('click', onClear);
 
     </script>
 </body>
