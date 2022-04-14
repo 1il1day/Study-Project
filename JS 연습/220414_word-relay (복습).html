@@ -7,7 +7,7 @@
     <title>끝말잇기</title>
 </head>
 <body>
-    <div><span class="order">1</span>번째 참가자</div>
+    <div><span id="order">1</span>번째 참가자</div>
     <div>제시어: <span id="word"></span></div>
     <input type="text">
     <button>입력</button>
@@ -17,15 +17,43 @@
         const $button = document.querySelector('button');
         const $input = document.querySelector('input');
         const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
         let word; //제시어
         let newWord; //새로 입력한 단어
 
-        const onClickBtn = ()=>{
-            if(!word){
-                word=newWord;
+        const onClickBtn = ()=>{ //제시어가 비어있는가?
+            if(!word){ //비어있다
+                word=newWord; //입력 단어가 제시어가 됨
                 $word.textContent = word;
-                $input.value='';
-            }else{
+                $input.value=''; //다음사람이 입력하기 위해 input 값 비움
+                $input.focus();
+
+                const order = parseInt($order.textContent) //현재 순서
+                if(order+1 > number){
+                    $order.textContent=1
+                } else{
+                    $order.textContent = order + 1;
+                }
+
+            }else{//비어있지 않다
+                if(word[word.length-1] === newWord[0]){ //입력 단어는 올바른가
+                    word=newWord;
+                    $word.textContent = word;
+                    $input.value='';
+                    $input.focus();
+
+                const order = parseInt($order.textContent) //현재 순서
+                if(order+1 > number){
+                    $order.textContent=1
+                } else{
+                    $order.textContent = order + 1;
+                }
+
+                }else{//올바르지 않다
+                    alert('올바르지 않은 단어입니다!');
+                    $input.value='';
+                    $input.focus();
+                }
 
             }
         }
