@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stopwatch</title>
+</head>
+<style>
+
+</style>
+<body>
+    <h1>00:00:00</h1>
+    <p>
+        <button class="start">시작</button>
+        <button class="stop">멈춤</button>
+        <button class="clear">초기화</button>
+    </p>
+    <script>
+        let h1 = document.querySelector('h1');
+        let startBtn = document.querySelector('.start');
+        let stopBtn = document.querySelector('.stop');
+        let clearBtn = document.querySelector('.clear');
+
+        let sec = 0;
+        let min = 0;
+        let hour = 0;
+
+        function onStart(){
+            goSecond = setInterval(function(){
+                sec++;
+                if(sec>=60){
+                    sec=0;
+                }
+                time();
+            },1000)
+            goMin = setInterval(function(){
+                min++;
+                if(min>=60){
+                    sec=0;
+                }
+                time();
+            },1000*60)
+            goHour = setInterval(function(){
+                hour++;
+                if(hour>=60){
+                    sec=0;
+                }
+                time();
+            },1000*60*60)
+        }
+
+        function onStop(){
+            clearInterval(goSecond);
+            clearInterval(goMin);
+            clearInterval(goHour);
+        }
+        function onClear(){
+            h1.innerText = `00:00:00`;
+            sec=0;
+            min=0;
+            hour=0;
+            onStop();
+        }
+
+        function time(){
+            h1.innerText = `${hour<10? `0${hour}`:hour}:${min<10? `0${min}`:min}:${sec<10? `0${sec}`:sec}`;
+        }
+
+        startBtn.addEventListener('click',onStart);
+        stopBtn.addEventListener('click',onStop);
+        clearBtn.addEventListener('click',onClear);
+    </script>
+</body>
+</html>
