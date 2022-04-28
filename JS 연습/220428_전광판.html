@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>전광판</title>
+</head>
+<style>
+
+</style>
+<body>
+    <button>전광판 버튼</button>
+    <h1></h1>
+    <script>
+        const arr=['코','드','메','이','트','!'];
+        const arrColor=['red','blue','green','yellow','orange','purple'];
+        const btn = document.querySelector('button');
+        const h1 = document.querySelector('h1');
+
+        let txt=0;
+        let color=0;
+        function onBtn(){
+            if(txt>arr.length-1){
+                h1.innerHTML='';
+                txt=0;
+                color=0;
+            }
+            h1.style.color = arrColor[color];
+            h1.innerHTML += arr[txt];
+            txt++;
+            color++;
+        }
+        btn.addEventListener('click',onBtn)
+    </script>
+</body>
+</html>
