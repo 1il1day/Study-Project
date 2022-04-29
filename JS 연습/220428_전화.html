@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>전화</title>
+</head>
+<style>
+    div{
+        width: 500px; 
+        height: 500px; 
+        background: #333; 
+        text-align: center;
+    }
+    h1{
+        padding: 100px 0 40px 0;
+        color: #fff;
+        opacity: 0;
+        transition: 0.4s;
+    }
+    strong{
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        margin: auto;
+        margin-bottom: 90px;
+        background: aliceblue;
+        border-radius: 15px;
+        display: block;
+        opacity: 0;
+        transition: 0.4s;
+    }
+    button{
+        width: 70px;
+        height: 70px;
+        background: skyblue;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+    }
+    button:active{
+        background: pink;
+        transform: scale(0.9);
+    }
+</style>
+<body>
+    <div>
+        <h1>모각코</h1>
+        <strong>010-xxxx-xxxx</strong>
+        <button>전화걸기</button>
+    </div>
+    <script>
+        const callBtn = document.querySelector('button');
+        const h1 = document.querySelector('h1');
+        const str = document.querySelector('strong');
+
+        function onBtn(){
+            setTimeout(() => {
+                h1.style.opacity=1;
+                str.style.opacity=1;
+            }, 2000);
+        }
+
+        callBtn.addEventListener('click',onBtn);
+    </script>
+</body>
+</html>

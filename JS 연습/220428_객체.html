@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체</title>
+</head>
+<style>
+
+</style>
+<body>
+    <button class="bboki">떡볶이</button>
+    <button class="pizza">피자</button>
+    <button class="ice">아이스크림</button>
+    <h2></h2>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        const btn1 = document.querySelector('.bboki');
+        const btn2 = document.querySelector('.pizza');
+        const btn3 = document.querySelector('.ice');
+        const h2 = document.querySelector('h2');
+        const li = document.querySelector('li:nth-child(1)');
+        const li2 = document.querySelector('li:nth-child(2)');
+
+        let bboki = {
+            flavor:'순한맛',
+            star:'★★★★☆'
+        }
+        let pizza = {
+            flavor:'포테이토',
+            star:'★★★★★'
+        }
+        let ice = {
+            flavor:'체리맛',
+            star:'★★★☆☆'
+        }
+
+        function bbokiGood(){
+            h2.innerText = "떡볶이";
+            li.innerText = bboki.flavor;
+            li2.innerText = bboki.star;
+        }
+        function pizzaGood(){
+            h2.innerText = "피자";
+            li.innerText = pizza.flavor;
+            li2.innerText = pizza.star;
+        }
+        function iceGood(){
+            h2.innerText = "아이스크림";
+            li.innerText = ice.flavor;
+            li2.innerText = ice.star;
+        }
+
+        btn1.addEventListener('click',bbokiGood);
+        btn2.addEventListener('click',pizzaGood);
+        btn3.addEventListener('click',iceGood);
+    </script>
+</body>
+</html>
