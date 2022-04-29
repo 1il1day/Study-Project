@@ -2,40 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>챗봇</title>
+    <title>말 안듣는 챗봇</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
     <div class="chat-bot">
-        <strong>코딩핸냥</strong>
+        <strong id="cat-console">코딩핸냥</strong>
         <p><img src="./img/768px-Ei-sc-github.svg.png" alt="github-cat"></p>
         <input type="text" id="input-box" class="input-style">
         <button onclick="input()">시키기</button>
     </div>
 
     <script>
-        function input(){
-            const body = document.querySelector('body');
-            const inputTxt = document.getElementById('input-box').value;
-            const inputBox = document.getElementById('input-box');
-            const str = document.querySelector('.chat-bot strong');
-            
+        let n=0;
+        let follow=0;
 
-            if(inputTxt=="alert"){
-                alert('경고창!!!!!!!!')
-            }
-            if(inputTxt=="노랑"){
-                inputBox.style.backgroundColor = "yellow";
-            }
-            if(inputTxt=="야옹"){
-                console.log('냐옹');
-            }
+        function input(){
+            let inputTxt = document.querySelector('#input-box').value;
+            let inputBox = document.querySelector('#input-box');
+            let catTxt = document.querySelector('#cat-console');
+            let btn = document.querySelector('button');
+            let body = document.querySelector('body');
+            
             if(inputTxt=="불꺼줘"){
-                body.style.backgroundColor = "#333";
-                str.style.backgroundColor = "#fff";
-                str.style.color = "#333";
-                str.innerHTML = "불껐당"
+                if(n==0){
+                    catTxt.innerHTML = "냥 ? 냥?";
+                    n+=1;
+                }else if(n==1){
+                    catTxt.innerHTML = "캬앙!";
+                    inputBox.style.backgroundColor = '#333';
+                    n+=1;
+                }else{
+                    catTxt.innerHTML = "냥!";
+                    catTxt.style.color = '#333';
+                    body.style.backgroundColor = '#333';
+                    inputBox.style.backgroundColor = '#fff';
+                    catTxt.style.backgroundColor = '#fff';
+                }
+            }
+            
+            if(follow==1){ //follow = 1인 경우
+                catTxt.innerHTML = inputTxt+"냥!";
+                if(inputTxt=="그만"){
+                    catTxt.innerHTML = "냐앙..";
+                    follow=0;
+                    console.log(follow);
+                }
+            }else{ //follow = 0인 경우
+                if(inputTxt=="나 따라해봐"){
+                    follow=1;
+                    catTxt.innerHTML = "냥냥!";
+                    console.log(follow);
+                }
             }
         }
         
