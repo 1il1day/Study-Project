@@ -5,6 +5,7 @@
     <title>말 안듣는 챗봇</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/chatbot.css">
+    <script src="js/type.js"></script>
 </head>
 <body>
     <div class="chat-bot">
@@ -13,6 +14,7 @@
         <input type="text" id="input-box" class="input-style">
         <button onclick="input()">시키기</button>
     </div>
+    <div id="typing"></div>
 
     <script>
         let n=0;
@@ -24,15 +26,18 @@
             let catTxt = document.querySelector('#cat-console');
             let btn = document.querySelector('button');
             let body = document.querySelector('body');
+            let typing = document.querySelector('#typing');
             
             if(inputTxt=="불꺼줘"){
                 if(n==0){
                     catTxt.innerHTML = "냥 ? 냥?";
                     n+=1;
+                    typingAni();
                 }else if(n==1){
                     catTxt.innerHTML = "캬앙!";
                     inputBox.style.backgroundColor = '#333';
                     n+=1;
+                    typingAni();
                 }else{
                     catTxt.innerHTML = "냥!";
                     catTxt.style.color = '#333';
@@ -57,6 +62,21 @@
                 }
             }
         }
+
+        function typingAni(){
+            var typewriter = new Typewriter(typing, {
+                loop: false
+            });
+            typewriter
+            .pauseFor(1000)
+            .typeString('다시 한번 말해볼까?')
+            .pauseFor(2500)
+            .deleteAll()
+            .start();
+        }
+        
+
+
         
     </script>
 </body>
