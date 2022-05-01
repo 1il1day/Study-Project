@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>쿵쿵따</title>
+</head>
+<style>
+    body{background-color: #333; color: #999;}
+    .inner{width: 1000px; margin: auto;}
+    strong{display: block;}
+    h1{text-align: center; margin: 70px 0;}
+    p{display: block; font-size: 70px; margin-bottom: 50px; color: #fff; border: 3px solid #fff; height: 150px; line-height: 150px; width: 700px; margin: 30px auto; overflow: auto; overflow-y: hidden; text-align: center;}
+    .input-box{text-align: center;}
+    input{width: 600px; height: 100px; font-size: 50px; outline: none; box-sizing: border-box; padding: 0 10px;}
+    button{width: 100px;height: 100px; vertical-align: top; font-size: 20px; background: #111; border: none; font-weight: 600; color: tomato; cursor: pointer;}
+
+</style>
+<body>
+    <div class="inner">
+        <strong>참가자: <span class="people"></span>명</strong>
+        <em><span class="cnt-people"></span>번째 참가자</em>
+        <h1>정말 신나는 쿵쿵따</h1>
+        <p><span class="cnt-txt"></span></p>
+        <div class="input-box">
+            <input type="text" id="input-txt">
+            <button>쿵쿵따!</button>
+        </div>
+    </div>
+
+    <script>
+        const people = document.querySelector('strong .people');
+        const goBtn = document.querySelector('button');
+        let cntTxt = document.querySelector('.cnt-txt');
+        let howMany = Number(prompt('몇 명이 참가하나요?'));
+        let cntPeople = document.querySelector('em .cnt-people');
+        
+        let cnt = 1;
+
+        function userIn(){
+            if(howMany!=null && howMany!=0){
+                people.innerHTML=howMany;
+                cntPeople.innerHTML = cnt;
+
+            }else{ // prompt에서 취소를 눌렀을 경우
+                alert('입력하지 않으셨어요!');
+                return; //종료한다
+            }
+        }
+        userIn();
+
+        function start(){
+        let inputTxt = document.querySelector('#input-txt').value;
+
+            if(cntTxt.innerText==''){ // 제시어가 없다면 (첫번째 참가자)
+                if(inputTxt.length==3){ //3글자로 입력
+                    cntTxt.innerText = inputTxt;
+                    cnt++;
+                    cntPeople.innerHTML = cnt;
+                }else{
+                    alert("3글자로 입력하세요!");
+                }
+            }else{ //제시어가 존재한다면
+                // 앞의 마지막 글자와 입력값의 첫글자가 같은 3글자로 입력해라
+                if(inputTxt.length==3 && inputTxt[0]==cntTxt.innerText[cntTxt.innerText.length-1]){
+                    cntTxt.innerText = inputTxt;
+                    if(cnt>=howMany){
+                        cnt=1;
+                        cntPeople.innerHTML = cnt;
+                    }else{
+                        cnt+=1;
+                        cntPeople.innerHTML = cnt;
+                    }
+
+                }else{
+                    alert("다시 입력하세요!");
+                }
+            }
+        }
+
+        goBtn.addEventListener('click',start);
+
+    </script>
+</body>
+</html>
